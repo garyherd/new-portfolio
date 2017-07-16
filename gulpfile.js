@@ -54,6 +54,12 @@ gulp.task('minify-js', function() {
         }))
 });
 
+// Copy contentful core files from node_modules to vendor directory
+gulp.task('contentful', function() {
+    return gulp.src(['node_modules/contentful/dist/contentful.js', 'node_modules/contentful/dist/contentful.min.js'])
+        .pipe(gulp.dest('vendor/contentful'))
+})
+
 // Copy Bootstrap core files from node_modules to vendor directory
 gulp.task('bootstrap', function() {
     return gulp.src(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
@@ -80,7 +86,7 @@ gulp.task('fontawesome', function() {
 })
 
 // Copy all third party dependencies from node_modules to vendor directory
-gulp.task('copy', ['bootstrap', 'jquery', 'fontawesome']);
+gulp.task('copy', ['bootstrap', 'jquery', 'fontawesome', 'contentful']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
