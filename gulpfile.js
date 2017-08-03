@@ -106,3 +106,14 @@ gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() 
     gulp.watch('*.html', browserSync.reload);
     gulp.watch('js/**/*.js', browserSync.reload);
 });
+
+gulp.task('build', function() {
+    return gulp.src([
+        'index.html',
+        'css/**/*',
+        'img/**/*',
+        'js/**/*',
+        'vendor/**/*',
+        'mail/**/*'
+    ]).pipe(gulp.dest('dist'))
+})
