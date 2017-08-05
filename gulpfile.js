@@ -107,13 +107,51 @@ gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() 
     gulp.watch('js/**/*.js', browserSync.reload);
 });
 
-gulp.task('build', function() {
+gulp.task('build-css', function() {
+    return gulp.src([
+        'css/**/*'
+    ]).pipe(gulp.dest('dist/css'))
+})
+
+gulp.task('build-img', function() {
+    return gulp.src([
+        'img/**/*'
+    ]).pipe(gulp.dest('dist/img'))
+})
+
+gulp.task('build-js', function() {
+    return gulp.src([
+        'js/**/*'
+    ]).pipe(gulp.dest('dist/js'))
+})
+
+gulp.task('build-mail', function() {
+    return gulp.src([
+        'mail/**/*'
+    ]).pipe(gulp.dest('dist/mail'))
+})
+
+gulp.task('build-vendor', function() {
+    return gulp.src([
+        'vendor/**/*'
+    ]).pipe(gulp.dest('dist/vendor'))
+})
+
+gulp.task('build-index', function() {
     return gulp.src([
         'index.html',
-        'css/**/*',
-        'img/**/*',
-        'js/**/*',
-        'vendor/**/*',
-        'mail/**/*'
     ]).pipe(gulp.dest('dist'))
 })
+
+// gulp.task('build', function() {
+//     return gulp.src([
+//         'index.html',
+//         'css/**/*',
+//         'img/**/*',
+//         'js/**/*',
+//         'vendor/**/*',
+//         'mail/**/*'
+//     ]).pipe(gulp.dest('dist'))
+// })
+
+gulp.task('build', ['build-css', 'build-img', 'build-js', 'build-mail', 'build-vendor', 'build-index']);
